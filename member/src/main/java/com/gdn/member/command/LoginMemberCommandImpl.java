@@ -4,7 +4,6 @@ import com.gdn.member.command.commandInterface.LoginMemberCommand;
 import com.gdn.member.command.model.LoginMemberCommandRequest;
 import com.gdn.member.controller.webmodel.response.LoginMemberResponse;
 import com.gdn.member.entity.Member;
-import com.gdn.member.exception.DataNotFoundException;
 import com.gdn.member.exception.UnauthorizeException;
 import com.gdn.member.repository.MemberRepository;
 import com.gdn.member.utility.JwtUtil;

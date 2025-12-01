@@ -19,7 +19,7 @@ public class ErrorController {
   @ExceptionHandler(UnauthorizeException.class)
   public ResponseEntity<Map<String, Object>> handleUnAuthorize(UnauthorizeException unauthorizeException) {
     return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
-      .body(Map.of("code", HttpStatus.UNAUTHORIZED.value(), "status", HttpStatus.UNAUTHORIZED.name()));
+      .body(Map.of("code", HttpStatus.UNAUTHORIZED.value(), "status", HttpStatus.UNAUTHORIZED.name(), "message","Invalid Username or Password"));
   }
 
   @ExceptionHandler(DataNotFoundException.class)
