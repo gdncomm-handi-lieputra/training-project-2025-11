@@ -19,7 +19,7 @@
 	<properties>
 		<java.version>17</java.version>
 		<spring.boot.version>3.2.8</spring.boot.version>
-		<spring-cloud.version>2022.0.3</spring-cloud.version>
+		<spring-cloud.version>2023.0.3</spring-cloud.version>
 		<maven.compiler.source>${java.version}</maven.compiler.source>
 		<maven.compiler.target>${java.version}</maven.compiler.target>
 		<lombok.version>1.18.32</lombok.version>
@@ -86,7 +86,21 @@
 					<artifactId>spring-boot-maven-plugin</artifactId>
 					<version>${spring.boot.version}</version>
 				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-compiler-plugin</artifactId>
+					<version>3.11.0</version>
+					<configuration>
+						<parameters>true</parameters>
+					</configuration>
+				</plugin>
 			</plugins>
 		</pluginManagement>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+			</plugin>
+		</plugins>
 	</build>
 </project>

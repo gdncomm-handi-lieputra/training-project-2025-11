@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/backend/member")
+@RequestMapping("/members")
 public class MemberController extends BaseCommandController {
 
   @PostMapping("/register")

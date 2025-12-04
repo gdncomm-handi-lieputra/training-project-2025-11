@@ -26,9 +26,9 @@ public class ProductController extends BaseCommandController {
 
   @GetMapping
   public ResponseEntity<Page<GetProductResponse>> getAllProducts(
-      @RequestParam(required = false) String name,
-      @RequestParam(defaultValue = "0") Integer page,
-      @RequestParam(defaultValue = "10") Integer size) {
+      @RequestParam(value = "name", required = false, defaultValue = "") String name,
+      @RequestParam(value = "page", defaultValue = "0") Integer page,
+      @RequestParam(value = "size", defaultValue = "10") Integer size) {
 
       return ResponseEntity.ok(executor.execute(
               GetProductCommand.class,
@@ -40,7 +40,7 @@ public class ProductController extends BaseCommandController {
   }
 
   @GetMapping("/{id}")
-  public ResponseEntity<GetProductResponse> getProductById(@PathVariable String id) {
+  public ResponseEntity<GetProductResponse> getProductById(@PathVariable("id") String id) {
 
       return ResponseEntity.ok(executor.execute(
               GetProductByIdCommand.class,

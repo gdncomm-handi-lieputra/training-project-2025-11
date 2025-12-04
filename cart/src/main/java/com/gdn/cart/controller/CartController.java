@@ -30,9 +30,7 @@ public class CartController extends BaseCommandController {
 
   @GetMapping
   public ResponseEntity<CartResponse> getCart(
-      @RequestHeader("X-User-Id") String userId) {
-
-    log.info("User {} is viewing cart", userId);
+      @RequestHeader(value = "X-User-Id") String userId) {
 
     return ResponseEntity.ok(executor.execute(
         GetCartCommand.class,
@@ -43,7 +41,7 @@ public class CartController extends BaseCommandController {
 
   @PostMapping
   public ResponseEntity<CartResponse> addToCart(
-      @RequestHeader("X-User-Id") String userId,
+      @RequestHeader(value = "X-User-Id") String userId,
       @Valid @RequestBody AddToCartRequest request) {
 
     return ResponseEntity.ok(executor.execute(
@@ -57,8 +55,8 @@ public class CartController extends BaseCommandController {
 
   @DeleteMapping("/items/{productId}")
   public ResponseEntity<CartResponse> removeFromCart(
-      @RequestHeader("X-User-Id") String userId,
-      @PathVariable String productId) {
+      @RequestHeader(value = "X-User-Id") String userId,
+      @PathVariable(value = "productId") String productId) {
 
     return ResponseEntity.ok(executor.execute(
         RemoveFromCartCommand.class,
