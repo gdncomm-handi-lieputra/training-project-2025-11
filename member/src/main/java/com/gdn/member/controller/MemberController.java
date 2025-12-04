@@ -11,6 +11,7 @@ import com.gdn.member.controller.webmodel.response.LoginMemberResponse;
 import com.gdn.member.controller.webmodel.response.RegisterMemberResponse;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -24,14 +25,14 @@ public class MemberController extends BaseCommandController {
 
   @PostMapping("/register")
   public ResponseEntity<RegisterMemberResponse> registerMember(@Valid @RequestBody RegisterMemberRequest request){
-    return ResponseEntity.ok(executor.execute(
-      RegisterMemberCommand.class,
-      RegisterMemberCommandRequest.builder()
-        .username(request.getUsername())
-        .password(request.getPassword())
-        .name(request.getName())
-        .address(request.getAddress())
-        .build()));
+    return ResponseEntity.status(HttpStatus.CREATED).body(executor.execute(
+            RegisterMemberCommand.class,
+            RegisterMemberCommandRequest.builder()
+                    .username(request.getUsername())
+                    .password(request.getPassword())
+                    .name(request.getName())
+                    .address(request.getAddress())
+                    .build()));
   }
 
   @PostMapping("/login")
