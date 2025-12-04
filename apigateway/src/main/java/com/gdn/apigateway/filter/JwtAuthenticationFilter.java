@@ -30,7 +30,8 @@ public class JwtAuthenticationFilter implements GlobalFilter, Ordered {
   // Public endpoints that don't require authentication
   private static final List<String> PUBLIC_ENDPOINTS = List.of(
       "/members/login",
-      "/members/register"
+      "/members/register",
+      "/products"
   );
 
   @Override

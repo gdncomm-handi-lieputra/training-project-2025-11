@@ -14,12 +14,9 @@ import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-
-import java.util.List;
 
 @RestController
 @RequestMapping("/products")
@@ -29,25 +26,21 @@ public class ProductController extends BaseCommandController {
 
   @GetMapping
   public ResponseEntity<Page<GetProductResponse>> getAllProducts(
-      @RequestHeader("X-User-Id") String userId,
-      @RequestHeader("X-Username") String username,
       @RequestParam(required = false) String name,
       @RequestParam(defaultValue = "0") Integer page,
-      @RequestParam(defaultValue = "10") Integer size
-      ) {
+      @RequestParam(defaultValue = "10") Integer size) {
 
       return ResponseEntity.ok(executor.execute(
               GetProductCommand.class,
               GetProductCommandRequest.builder()
                       .productName(name)
+                      .page(page)
+                      .size(size)
                       .build()));
   }
 
   @GetMapping("/{id}")
-  public ResponseEntity<GetProductResponse> getProductById(
-      @RequestHeader("X-User-Id") String userId,
-      @RequestHeader("X-Username") String username,
-      @PathVariable String id) {
+  public ResponseEntity<GetProductResponse> getProductById(@PathVariable String id) {
 
       return ResponseEntity.ok(executor.execute(
               GetProductByIdCommand.class,
