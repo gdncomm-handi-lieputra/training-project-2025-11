@@ -20,10 +20,10 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/members")
+@RequestMapping("")
 public class MemberController extends BaseCommandController {
 
-  @PostMapping("/register")
+  @PostMapping("/members/register")
   public ResponseEntity<RegisterMemberResponse> registerMember(@Valid @RequestBody RegisterMemberRequest request){
     return ResponseEntity.status(HttpStatus.CREATED).body(executor.execute(
             RegisterMemberCommand.class,
@@ -35,7 +35,7 @@ public class MemberController extends BaseCommandController {
                     .build()));
   }
 
-  @PostMapping("/login")
+  @PostMapping("/auth/login")
   public ResponseEntity<LoginMemberResponse> login(@Valid @RequestBody LoginMemberRequest request) {
     return ResponseEntity.ok(executor.execute(
       LoginMemberCommand.class,
